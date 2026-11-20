@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel · Mini Invernadero IoT</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body data-page="panel">
+<!-- PÁGINA PROTEGIDA: el ESP32 solo la entrega con sesión válida; si no, redirige a /login -->
+
+  <header class="encabezado">
+    <h1>Mini Invernadero IoT</h1>
+    <div class="sesion">
+      <span>Sesión expira en <strong id="tiempoSesion">10:00</strong></span>
+      <button id="btnLogout" type="button">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="panel">
+
+    <!-- 1. Lecturas del sensor DHT11 -->
+    <section class="seccion" aria-labelledby="t-lecturas">
+      <h2 id="t-lecturas">Lecturas</h2>
+      <div class="lecturas">
+        <div class="lectura">
+          <div class="nombre">Temperatura</div>
+          <div><span class="valor" id="temperatura">--</span> °C</div>
+        </div>
+        <div class="lectura">
+          <div class="nombre">Humedad</div>
+          <div><span class="valor" id="humedad">--</span> %</div>
+        </div>
+      </div>
+      <span id="estado" class="estado">Sin datos</span>
+      <p id="motivo" class="ayuda"></p>
+    </section>
+
+    <!-- 2. Control de actuadores -->
+    <section class="seccion" aria-labelledby="t-control">
+      <h2 id="t-control">Control</h2>
+
+      <div class="fila">
+        <span class="etiqueta">Modo</span>
+        <button type="button" class="secundario" data-modo="auto" data-clave="modo" data-valor="auto">Automático</button>
+        <button type="button" class="secundario" data-modo="manual" data-clave="modo" data-valor="manual">Manual</button>
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Ventana</span>
+        <button type="button" class="manual" data-clave="ventana" data-valor="abrir">Abrir</button>
+        <button type="button" class="manual" data-clave="ventana" data-valor="cerrar">Cerrar</button>
+        <span class="valor-estado" id="ventana">--</span>
+      </div>
+
+      <div class="fila">
+        <span class="etiqueta">Luz cálida</span>
+        <button type="button" class="manual" data-clave="luz" data-valor="on">Encender</button>
+        <button type="button" class="manual" data-clave="luz" data-valor="off">Apagar</button>
+        <span class="valor-estado" id="luz">--</span>
+      </div>
+
+      <p id="ayudaModo" class="ayuda"></p>
+    </section>
+
+    <!-- 3. Almacenamiento en Supabase -->
+    <section class="seccion" aria-labelledby="t-supabase">
+      <h2 id="t-supabase">Almacenamiento en Supabase</h2>
+      <p id="supabase" class="ayuda">Sin información de envíos todavía.</p>
+    </section>
+
+    <!-- 4. Bitácora de accesos (archivo en SPIFFS) -->
+    <section class="seccion" aria-labelledby="t-logs">
+      <h2 id="t-logs">Registro de accesos</h2>
+      <button id="btnLogs" type="button" class="secundario">Actualizar registro</button>
+      <pre id="logs" class="registro">Cargando...</pre>
+    </section>
+
+    <p id="aviso" class="mensaje" role="alert" aria-live="polite"></p>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
