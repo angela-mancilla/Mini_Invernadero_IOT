@@ -1,0 +1,127 @@
+/* ==========================================================
+   style.css - Estilos compartidos de login.html e index.html
+   Mini Invernadero Inteligente IoT
+   ========================================================== */
+
+/* ---------- Colores y medidas ---------- */
+:root {
+  --verde: #1f4d3a;
+  --verde-claro: #e3eedf;
+  --fondo: #f4f6f1;
+  --blanco: #ffffff;
+  --texto: #1d2a24;
+  --texto-suave: #55645b;
+  --borde: #cdd8c8;
+  --amarillo: #e3b23c;
+  --rojo: #b3261e;
+  --rojo-claro: #fbe9e7;
+  --ok: #2e7d4f;
+  --radio: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+h1, h2 { margin: 0; line-height: 1.2; }
+h2 { font-size: 1.15rem; margin-bottom: 12px; }
+
+/* ---------- Botones e inputs ---------- */
+button {
+  font: inherit;
+  padding: 10px 16px;
+  border: 1px solid var(--verde);
+  border-radius: var(--radio);
+  background: var(--verde);
+  color: #fff;
+  cursor: pointer;
+}
+button.secundario { background: var(--blanco); color: var(--verde); }
+button.activo { background: var(--amarillo); border-color: var(--amarillo); color: var(--texto); font-weight: 600; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--amarillo); outline-offset: 2px; }
+
+label { display: block; margin: 14px 0 4px; font-weight: 600; }
+input {
+  width: 100%;
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+/* ---------- Mensajes ---------- */
+.mensaje { min-height: 1.5em; margin: 14px 0 0; color: var(--texto-suave); }
+.mensaje.error { color: var(--rojo); font-weight: 600; }
+.mensaje.ok { color: var(--ok); font-weight: 600; }
+
+/* ---------- Login ---------- */
+.pagina-login { display: grid; place-items: center; min-height: 100vh; padding: 16px; }
+.login {
+  width: 100%;
+  max-width: 380px;
+  padding: 28px 24px;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-top: 6px solid var(--verde);
+  border-radius: var(--radio);
+}
+.login h1 { font-size: 1.6rem; color: var(--verde); }
+.login .sub { margin: 6px 0 8px; color: var(--texto-suave); }
+.login button { width: 100%; margin-top: 18px; }
+
+/* ---------- Panel ---------- */
+.encabezado {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  align-items: center; justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--verde);
+  color: #fff;
+}
+.encabezado h1 { font-size: 1.3rem; }
+.sesion { display: flex; align-items: center; gap: 12px; font-size: .95rem; }
+.sesion button { padding: 6px 12px; background: transparent; border-color: #fff; }
+
+main.panel { max-width: 760px; margin: 0 auto; padding: 16px; }
+.seccion {
+  margin-bottom: 16px; padding: 18px;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.lecturas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lectura { padding: 14px; background: var(--verde-claro); border-radius: var(--radio); }
+.lectura .nombre { color: var(--texto-suave); }
+.lectura .valor { font-size: 2.4rem; font-weight: 700; color: var(--verde); }
+
+.estado {
+  display: inline-block; margin-top: 14px; padding: 4px 12px;
+  border-radius: 999px; font-weight: 600;
+  background: var(--verde-claro); color: var(--ok);
+}
+.estado.alerta { background: var(--rojo-claro); color: var(--rojo); }
+
+.fila { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+.fila .etiqueta { min-width: 120px; font-weight: 600; }
+.fila .valor-estado { margin-left: 4px; color: var(--texto-suave); }
+.ayuda { margin: 0; color: var(--texto-suave); font-size: .92rem; }
+
+pre.registro {
+  max-height: 260px; overflow: auto; margin: 12px 0 0; padding: 12px;
+  background: #16231d; color: #d8ead9;
+  border-radius: var(--radio);
+  font: .88rem/1.5 Consolas, "Courier New", monospace;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 480px) {
+  .lecturas { grid-template-columns: 1fr; }
+  .lectura .valor { font-size: 2rem; }
+}
